@@ -1,0 +1,203 @@
+{
+	"info": {
+		"_postman_id": "2c3e1db3-7238-4f59-8125-3e07531e6847",
+		"name": "Task_API_Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "33906572"
+	},
+	"item": [
+		{
+			"name": "Auth APIs",
+			"item": [
+				{
+					"name": "http://localhost:6000/v1/auth/register",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"example@gmail.com\",\r\n    \"password\": \"examplePass\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:6000/v1/auth/register",
+						"description": "Registers Users and Hashes User's Password using Bcrypt.js"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:6000/v1/auth/login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"example@gmail.com\",\r\n    \"password\": \"examplePass\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:6000/v1/auth/login",
+						"description": "Authenticate a user with their email and password. Returns a signed JWT on success.\r\n\r\n\r\n"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Event APIs",
+			"item": [
+				{
+					"name": "http://localhost:6000/v1/events",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:6000/v1/events",
+						"description": "Gets all the Events from DB. No Middleware for this since a User can see all the events without Login or Signing Up as well."
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:6000/v1/events/:id",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:6000/v1/events/680147b7006401a7f742606b",
+						"description": "Gets Specific Event from the Collection of Events in DB. Get the ID from \r\nhttp://localhost:6000/v1/events\r\nand replace :id with actual ID\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:6000/v1/events",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODAxZDY4NWE3MjY5ZTUyOGM1N2RmZWYiLCJlbWFpbCI6ImV4YW1wbGVAZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkQUZiYWVVV0JmOGFwZlVZZVgwblhmZUVab0JLRjFZMk1mUW4wL3hIV0hqQURLdEZ2UjhYRm0iLCJyb2xlIjoidXNlciIsImNyZWF0ZWRBdCI6IjIwMjUtMDQtMThUMDQ6MzU6MTcuNDcxWiIsInVwZGF0ZWRBdCI6IjIwMjUtMDQtMThUMDQ6MzU6MTcuNDcxWiIsIl9fdiI6MCwiaWF0IjoxNzQ0OTUxNDc0LCJleHAiOjE3NDQ5Njk0NzR9.axBZr_C0k0LA9_oK6ajT867e8NS1AtCX-WeeLlk4KvY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Cloud Dev Conference\",\r\n  \"description\": \"Sessions and workshops on cloud development practices.\",\r\n  \"location\": \"Berlin, Germany\",\r\n  \"startTime\": \"2025-04-17T10:00:00Z\",\r\n  \"endTime\": \"2025-04-17T18:00:00Z\",\r\n  \"createdBy\": \"user010\",\r\n  \"bannerUrl\": \"/uploads/cloudconf.jpg\",\r\n  \"isPublished\": true,\r\n  \"participants\": [\"user011\", \"user012\"],\r\n  \"maxParticipants\": 250,\r\n  \"status\": \"ongoing\",\r\n  \"createdAt\": \"2025-04-10T09:00:00Z\",\r\n  \"updatedAt\": \"2025-04-17T10:00:00Z\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:6000/v1/events",
+						"description": "Posts Event.\r\nIt firsts authenticates using JWT.\r\nif Authenticated then it grants the Request"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:6000/v1/events/6801d9319fdea264dd97d671",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODAxZDY4NWE3MjY5ZTUyOGM1N2RmZWYiLCJlbWFpbCI6ImV4YW1wbGVAZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkQUZiYWVVV0JmOGFwZlVZZVgwblhmZUVab0JLRjFZMk1mUW4wL3hIV0hqQURLdEZ2UjhYRm0iLCJyb2xlIjoidXNlciIsImNyZWF0ZWRBdCI6IjIwMjUtMDQtMThUMDQ6MzU6MTcuNDcxWiIsInVwZGF0ZWRBdCI6IjIwMjUtMDQtMThUMDQ6MzU6MTcuNDcxWiIsIl9fdiI6MCwiaWF0IjoxNzQ0OTUxNDc0LCJleHAiOjE3NDQ5Njk0NzR9.axBZr_C0k0LA9_oK6ajT867e8NS1AtCX-WeeLlk4KvY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"Updated Description\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:6000/v1/events/6801d9319fdea264dd97d671",
+						"description": "Updates the event created by the user.\r\nFirst, it verifies the user's authentication using JWT. Then, it confirms whether the authenticated user is the original creator of the event. If not, access to update the event is denied.\r\n\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:6000/v1/events/6801d9319fdea264dd97d671",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODAxZDY4NWE3MjY5ZTUyOGM1N2RmZWYiLCJlbWFpbCI6ImV4YW1wbGVAZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkQUZiYWVVV0JmOGFwZlVZZVgwblhmZUVab0JLRjFZMk1mUW4wL3hIV0hqQURLdEZ2UjhYRm0iLCJyb2xlIjoidXNlciIsImNyZWF0ZWRBdCI6IjIwMjUtMDQtMThUMDQ6MzU6MTcuNDcxWiIsInVwZGF0ZWRBdCI6IjIwMjUtMDQtMThUMDQ6MzU6MTcuNDcxWiIsIl9fdiI6MCwiaWF0IjoxNzQ0OTUxNDc0LCJleHAiOjE3NDQ5Njk0NzR9.axBZr_C0k0LA9_oK6ajT867e8NS1AtCX-WeeLlk4KvY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:6000/v1/events/6801d9319fdea264dd97d671",
+						"description": "Deletes the event created by the user.\r\nIt begins by validating the user's authentication through JWT. Next, it checks if the authenticated user is the original creator of the event. If the user is not the event owner, deletion access is denied.\r\n\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:6000/v1/events/6801dde0b68f5ffa83f9a20a/upload",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODAxZDY4NWE3MjY5ZTUyOGM1N2RmZWYiLCJlbWFpbCI6ImV4YW1wbGVAZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkQUZiYWVVV0JmOGFwZlVZZVgwblhmZUVab0JLRjFZMk1mUW4wL3hIV0hqQURLdEZ2UjhYRm0iLCJyb2xlIjoidXNlciIsImNyZWF0ZWRBdCI6IjIwMjUtMDQtMThUMDQ6MzU6MTcuNDcxWiIsInVwZGF0ZWRBdCI6IjIwMjUtMDQtMThUMDQ6MzU6MTcuNDcxWiIsIl9fdiI6MCwiaWF0IjoxNzQ0OTUxNDc0LCJleHAiOjE3NDQ5Njk0NzR9.axBZr_C0k0LA9_oK6ajT867e8NS1AtCX-WeeLlk4KvY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "banner",
+									"type": "file",
+									"src": "/C:/Users/moham/Downloads/Presentation.pdf"
+								}
+							]
+						},
+						"url": "http://localhost:6000/v1/events/6801dde0b68f5ffa83f9a20a/upload",
+						"description": "Handles image upload by the authenticated user.\r\nThe process starts by verifying the user's authentication using JWT. Then, it performs several validations on the uploaded image:\r\n\r\nEnsures the image is present in the request; otherwise, returns an \"Image not found\" error.\r\n\r\nValidates the file type—only .png and .jpg formats are allowed.\r\n\r\nChecks that the image size does not exceed 2 MB.\r\nIf any of these validations fail, the upload is rejected.\r\n\r\n"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
